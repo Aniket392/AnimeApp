@@ -21,6 +21,9 @@ class AnimeDetailViewModel(val animeDataModel: AnimeDataModel) : ViewModel(){
     private val _onLoading = MutableLiveData<Boolean>()
     val onLoading : LiveData<Boolean> = _onLoading
 
+    private val _onFailed = MutableLiveData<Boolean>()
+    val onFailed : LiveData<Boolean> = _onFailed
+
     fun getAnimeDetailData(mal_id : Int) {
         viewModelScope.launch(Dispatchers.IO) {
             _onLoading.postValue(true)
@@ -35,6 +38,7 @@ class AnimeDetailViewModel(val animeDataModel: AnimeDataModel) : ViewModel(){
 
                 override fun onFailure(call: Call<AnimeDetailApiResponse>, t: Throwable) {
                     Log.e("Aniket", t.message.toString())
+                    _onFailed.postValue(true)
                 }
             })
         }

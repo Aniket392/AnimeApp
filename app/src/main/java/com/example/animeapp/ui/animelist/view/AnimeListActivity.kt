@@ -3,6 +3,7 @@ package com.example.animeapp.ui.animelist.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,10 @@ class AnimeListActivity : AppCompatActivity(), ClickListener {
         viewModel.onLoading.observe(this) { isLoading->
             binding.loadingAnimation.visibility = if (isLoading) View.VISIBLE else View.GONE
             binding.recyclerView.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
+
+        viewModel.onFailed.observe(this) {
+            Toast.makeText(this, "Internet not Working!!!", Toast.LENGTH_LONG).show()
         }
     }
 

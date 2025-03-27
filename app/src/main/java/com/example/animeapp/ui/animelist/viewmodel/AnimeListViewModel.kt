@@ -1,6 +1,7 @@
 package com.example.animeapp.ui.animelist.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,6 +22,9 @@ class AnimeListViewModel(val animeDataModel: AnimeDataModel) : ViewModel() {
     private val _onLoading = MutableLiveData<Boolean>()
     val onLoading : LiveData<Boolean> = _onLoading
 
+    private val _onFailed = MutableLiveData<Boolean>()
+    val onFailed : LiveData<Boolean> = _onFailed
+
     fun getAnimeList() {
         viewModelScope.launch(Dispatchers.IO) {
             _onLoading.postValue(true)
@@ -39,6 +43,7 @@ class AnimeListViewModel(val animeDataModel: AnimeDataModel) : ViewModel() {
 
                 override fun onFailure(call: Call<AnimeApiResponse>, t: Throwable) {
                     Log.e("Aniket", t.message.toString())
+                    _onFailed.postValue(true)
                 }
 
             })

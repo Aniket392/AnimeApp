@@ -8,6 +8,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,6 +79,10 @@ class AnimeDetailActivity : AppCompatActivity() {
                 binding.titleTextView.visibility = View.VISIBLE
                 binding.cardView.visibility = View.VISIBLE
             }
+        }
+
+        viewModel.onFailed.observe(this) {
+            Toast.makeText(this, "Internet not Working!!!", Toast.LENGTH_LONG).show()
         }
     }
 
