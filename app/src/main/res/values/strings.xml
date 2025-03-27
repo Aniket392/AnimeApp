@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AnimeApp</string>
+    <string name="no_of_episodes">No. of episodes</string>
+    <string name="rating">Rating⭐</string>
+    <string name="anime_list">Anime List</string>
+</resources>
